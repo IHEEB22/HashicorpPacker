@@ -20,8 +20,6 @@ source "virtualbox-iso" "basic-example" {
   ]
 
       vboxmanage=[["modifyvm", "{{.Name}}", "--vram", "32"]]
-
-
 }
 
 build {
