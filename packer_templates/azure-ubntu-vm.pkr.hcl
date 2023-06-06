@@ -33,7 +33,7 @@ source "azure-arm" "ubuntu" {
 
 build {
   sources = ["source.azure-arm.ubuntu"]
-    provisioner "shell" {
+  provisioner "shell" {
     inline = [
       "echo Installing Updates",
       "sudo apt-get update",
@@ -42,5 +42,4 @@ build {
     ]
   }
 }
-
 

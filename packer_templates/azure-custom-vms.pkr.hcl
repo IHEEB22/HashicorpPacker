@@ -41,19 +41,19 @@ source "azure-arm" "windows" {
   managed_image_resource_group_name = "bear"
   managed_image_name                = "mycustom-windows-image-${local.timestamp}"
 
-  os_type           = "Windows"
-  image_publisher   = "MicrosoftWindowsServer"
-  image_offer       = "WindowsServer"
-  image_sku         = "2019-Datacenter"
+  os_type         = "Windows"
+  image_publisher = "MicrosoftWindowsServer"
+  image_offer     = "WindowsServer"
+  image_sku       = "2019-Datacenter"
 
-  communicator      = "winrm"
-  winrm_use_ssl     = true
-  winrm_insecure    = true
-  winrm_timeout     = "5m"
-  winrm_username    = "packer"
+  communicator   = "winrm"
+  winrm_use_ssl  = true
+  winrm_insecure = true
+  winrm_timeout  = "5m"
+  winrm_username = "packer"
 
-  location                          = "France Central"
-  vm_size                           = "Standard_B1s"
+  location = "France Central"
+  vm_size  = "Standard_B1s"
 }
 
 build {
