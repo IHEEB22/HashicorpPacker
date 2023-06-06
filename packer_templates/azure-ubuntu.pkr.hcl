@@ -22,7 +22,7 @@ source "azure-arm" "ubuntu" {
   subscription_id = var.arm_subscription_id
 
   managed_image_resource_group_name = "bear"
-  managed_image_name                = "ubuntu-nginx-image-${local.timestamp}"
+  managed_image_name                = "ubuntu-nginx-nimage-${local.timestamp}"
   os_type                           = "Linux"
   image_publisher                   = "Canonical"
   image_offer                       = "UbuntuServer"
@@ -32,7 +32,7 @@ source "azure-arm" "ubuntu" {
 }
 
 build {
-  sources = ["source.azure-arm.ubuntu", "source.azure-arm.windows"]
+  sources = ["source.azure-arm.ubuntu"]
     provisioner "shell" {
     inline = [
       "echo Installing Updates",
