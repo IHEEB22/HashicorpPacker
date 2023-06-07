@@ -1,3 +1,22 @@
+
+
+variable "arm_client_id" {
+  default   = "${env("ARM_CLIENT_ID")}"
+  sensitive = true
+}
+variable "arm_client_secret" {
+  default   = "${env("ARM_CLIENT_SECRET")}"
+  sensitive = true
+}
+variable "arm_tenant_id" {
+  default   = "${env("ARM_TENANT_ID")}"
+  sensitive = true
+
+}
+variable "arm_subscription_id" {
+  default   = "${env("ARM_SUBSCRIPTION_ID")}"
+  sensitive = true
+}
 locals {
   timestamp = regex_replace(timestamp(), "[- TZ:]", "")
 }
@@ -20,21 +39,15 @@ source "azure-arm" "ubuntu" {
 
 build {
   sources = ["source.azure-arm.ubuntu"]
-    provisioner "shell" {
-    inline = [
-      "echo Installing Updates",
-      "sudo apt-get update",
-      "sudo apt-get upgrade -y",
-      "sudo apt-get install -y nginx"
-    ]
+
+  provisioner "ansible" {
+    use_proxy               = false
+    ansible_env_vars        = ["PACKER_BUILD_NAME={{ build_name }}"]
+    playbook_file = "../playbooks/playbook.yml"
   }
-  
+
   post-processor "manifest" {
     output = "manifest.json"
-    }
-  post-processor "checksum" {
-    checksum_types = [ "md5", "sha512" ]
-    keep_input_artifact = true
   }
 }
 

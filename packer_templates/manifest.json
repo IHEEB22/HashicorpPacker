@@ -1,14 +1,23 @@
 {
-    "builds": [
-      {
-        "name": "ubuntu",
-        "builder_type": "azure-arm",
-        "build_time": 1686068372,
-        "files": null,
-        "artifact_id": "/subscriptions/6a94b8ef-60d8-4825-8249-e29f86430566/resourceGroups/bear/providers/Microsoft.Compute/images/ubuntu-nginx-nimage-20230606161523",
-        "packer_run_uuid": "077ff563-3225-92b9-a381-91d2db35773f",
-        "custom_data": null
-      }
-    ],
-    "last_run_uuid": "077ff563-3225-92b9-a381-91d2db35773f"
-  }
+  "builds": [
+    {
+      "name": "ubuntu",
+      "builder_type": "azure-arm",
+      "build_time": 1686068372,
+      "files": null,
+      "artifact_id": "/subscriptions/6a94b8ef-60d8-4825-8249-e29f86430566/resourceGroups/bear/providers/Microsoft.Compute/images/ubuntu-nginx-nimage-20230606161523",
+      "packer_run_uuid": "077ff563-3225-92b9-a381-91d2db35773f",
+      "custom_data": null
+    },
+    {
+      "name": "ubuntu",
+      "builder_type": "azure-arm",
+      "build_time": 1686105536,
+      "files": null,
+      "artifact_id": "/subscriptions/6a94b8ef-60d8-4825-8249-e29f86430566/resourceGroups/bear/providers/Microsoft.Compute/images/ubuntu-nginx-image-20230607023451",
+      "packer_run_uuid": "9a067112-f691-4165-3db4-57d2b9741c39",
+      "custom_data": null
+    }
+  ],
+  "last_run_uuid": "9a067112-f691-4165-3db4-57d2b9741c39"
+}
