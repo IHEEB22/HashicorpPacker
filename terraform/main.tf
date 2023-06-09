@@ -119,8 +119,8 @@ data "azurerm_image" "packer_image" {
 
 
 # Create a new Virtual Machine based on the custom Image
-resource "azurerm_virtual_machine" "myVM2" {
-  name                             = "myVM2"
+resource "azurerm_virtual_machine" "customVM" {
+  name                             = "customVM"
   location                         = azurerm_resource_group.rg.location
   resource_group_name              = azurerm_resource_group.rg.name
   network_interface_ids            = [azurerm_network_interface.my_terraform_nic.id]
@@ -133,12 +133,13 @@ resource "azurerm_virtual_machine" "myVM2" {
   }
 
   storage_os_disk {
-    name              = "myVM2-OS"
+    name              = "customVM-OS"
     caching           = "ReadWrite"
     create_option     = "FromImage"
     managed_disk_type = "Standard_LRS"
 }
 
+  #use ssh auhentification for production envirement 
   os_profile {
     computer_name  = "APPVM"
     admin_username = "devopsadmin"
