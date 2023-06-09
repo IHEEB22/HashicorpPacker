@@ -1,0 +1,13 @@
+---
+# playbook.yml
+- name: 'Provision Image'
+  hosts: default
+  become: true
+
+  tasks:
+    - name: install Apache
+      package:
+        name: 'apache2'
+        state: present
+    - name: print simple msg
+      command: echo 'Hello From Packer'
