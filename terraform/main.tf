@@ -1,3 +1,4 @@
+
 resource "random_pet" "rg_name" {
   prefix = var.resource_group_name_prefix
 }
@@ -108,44 +109,48 @@ resource "azurerm_storage_account" "my_storage_account" {
   }
 }
 
-# Create (and display) an SSH key
-resource "tls_private_key" "example_ssh" {
-  algorithm = "RSA"
-  rsa_bits  = 4096
+# Points to Packer build image 
+data "azurerm_image" "packer_image" {
+  name_regex                = "mycustom-ubuntu-image*"
+  resource_group_name = "bear"
 
 }
 
-# Create virtual machine
-resource "azurerm_linux_virtual_machine" "my_terraform_vm" {
-  name                  = "myVM"
-  location              = azurerm_resource_group.rg.location
-  resource_group_name   = azurerm_resource_group.rg.name
-  network_interface_ids = [azurerm_network_interface.my_terraform_nic.id]
-  size                  = "Standard_b1s"
 
-  os_disk {
-    name                 = "myOsDisk"
-    caching              = "ReadWrite"
-    storage_account_type = "Premium_LRS"
+
+# Create a new Virtual Machine based on the custom Image
+resource "azurerm_virtual_machine" "myVM2" {
+  name                             = "myVM2"
+  location                         = azurerm_resource_group.rg.location
+  resource_group_name              = azurerm_resource_group.rg.name
+  network_interface_ids            = [azurerm_network_interface.my_terraform_nic.id]
+  vm_size                          = "Standard_DS12_v2"
+  delete_os_disk_on_termination    = true
+  delete_data_disks_on_termination = true
+
+  storage_image_reference {
+    id = data.azurerm_image.packer_image.id
   }
 
-  source_image_reference {
-    publisher = "Canonical"
-    offer     = "UbuntuServer"
-    sku       = "18.04-LTS"
-    version   = "latest"
+  storage_os_disk {
+    name              = "myVM2-OS"
+    caching           = "ReadWrite"
+    create_option     = "FromImage"
+    managed_disk_type = "Standard_LRS"
+}
+
+  os_profile {
+    computer_name  = "APPVM"
+    admin_username = "devopsadmin"
+    admin_password = "Cssladmin#2019"
   }
+
+  os_profile_linux_config {
+    disable_password_authentication = false
+  }
+
+  
   tags = {
-    "env" = "test"
+    environment = "Production"
   }
-
-  computer_name                   = "myvm"
-  admin_username                  = "azureuser"
-  disable_password_authentication = true
-
-  admin_ssh_key {
-    username   = "azureuser"
-    public_key = tls_private_key.example_ssh.public_key_openssh
-  }
-
 }
