@@ -1,6 +1,5 @@
-# Project Title
+# HachicorpPacker
 
-[![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
 ## Description
 
@@ -22,3 +21,20 @@ Follow the steps below to use this project:
 
    ```bash
    git clone https://github.com/yourusername/your-repo.git
+2. Navigate to the packer directory:
+
+   ```bash
+   cd packer_templates
+3. Run packer format :
+
+   ```bash
+   packer fmt <file_name>
+4. Run packer validate :
+
+   ```bash
+   packer validate <file_name>
+5. Build the packer template file :
+
+   ```bash
+   packer build <file_name>
+ 
