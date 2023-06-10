@@ -1,5 +1,4 @@
 # Automating Azure Custom Image Creation and Deployment with Packer, Ansible, and Terraform.
-![Logo](C:\Users\User\Desktop\téléchargé.png)
 
 
 
