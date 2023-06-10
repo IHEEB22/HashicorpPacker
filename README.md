@@ -1,5 +1,6 @@
 # Automating Azure Custom Image Creation and Deployment with Packer, Ansible, and Terraform.
-[![License](https://img.shields.io/badge/License-HashiCorp-blue.svg)](LICENSE)
+![Project Image](project_image.png)
+
 
 
 
