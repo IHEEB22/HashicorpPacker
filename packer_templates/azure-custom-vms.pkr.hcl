@@ -75,14 +75,15 @@ build {
   sources = ["source.azure-arm.ubuntu", "source.azure-arm.windows"]
 
   provisioner "shell" {
+    only = ["source.azure-arm.ubuntu"]
     inline = [
       "echo 'Hello, Packer!'"
     ]
   }
-  provisioner "ansible" {
-    use_proxy               = false
-    ansible_env_vars        = ["PACKER_BUILD_NAME={{ build_name }}"]
-    playbook_file = "../playbooks/playbook.yml"
+  provisioner "file" {
+    except      = ["source.source.azure-arm.windows"]
+    destination = "/tmp"
+    source      = "../files/"
   }
 }
 
