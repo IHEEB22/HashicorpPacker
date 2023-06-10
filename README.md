@@ -1,4 +1,6 @@
 # Automating Azure Custom Image Creation and Deployment with Packer, Ansible, and Terraform.
+![Project Image](project_image.png)
+
 
 
 
