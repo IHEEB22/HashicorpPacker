@@ -113,7 +113,6 @@ resource "azurerm_storage_account" "my_storage_account" {
 data "azurerm_image" "packer_image" {
   name_regex                = "mycustom-ubuntu-image*"
   resource_group_name = "bear"
-
 }
 
 

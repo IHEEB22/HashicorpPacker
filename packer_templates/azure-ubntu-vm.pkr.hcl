@@ -41,9 +41,9 @@ build {
   sources = ["source.azure-arm.ubuntu"]
 
   provisioner "ansible" {
-    use_proxy               = false
-    ansible_env_vars        = ["PACKER_BUILD_NAME={{ build_name }}"]
-    playbook_file = "../playbooks/playbook.yml"
+    use_proxy        = false
+    ansible_env_vars = ["PACKER_BUILD_NAME={{ build_name }}"]
+    playbook_file    = "../playbooks/playbook.yml"
   }
 
   post-processor "manifest" {

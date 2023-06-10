@@ -1,6 +1,6 @@
 ---
 # playbook.yml
-- name: 'Provision Image'
+- name: 'Provision Custom Image'
   hosts: default
   become: true
 
@@ -9,5 +9,13 @@
       package:
         name: 'apache2'
         state: present
+
+    - name: Start Apache Service
+      service:
+        name: apache2
+        state: started
+        enabled: true
+
     - name: print simple msg
       command: echo 'Hello From Packer'
+

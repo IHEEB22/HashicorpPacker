@@ -1,3 +1,4 @@
+
 # variable "arm_client_id" {
 #   default   = "${env("ARM_CLIENT_ID")}"
 #   sensitive = true

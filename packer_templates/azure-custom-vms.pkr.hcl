@@ -35,6 +35,11 @@ source "azure-arm" "ubuntu" {
   image_sku                         = "16.04-LTS"
   location                          = "France Central"
   vm_size                           = "Standard_B1s"
+  azure_tags = {
+    environment = "Stage"
+    owner       = "DevopsAdmin"
+    os_type     = "Windows"
+  }
 }
 
 
@@ -57,26 +62,33 @@ source "azure-arm" "windows" {
   winrm_insecure = true
   winrm_timeout  = "5m"
   winrm_username = "packer"
-
-  location = "France Central"
-  vm_size  = "Standard_B1s"
+  location       = "France Central"
+  vm_size        = "Standard_B1s"
+  azure_tags = {
+    environment = "Stage"
+    owner       = "DevopsAdmin"
+    os_type     = "Windows"
+  }
 }
 
 build {
   sources = ["source.azure-arm.ubuntu", "source.azure-arm.windows"]
 
   provisioner "shell" {
-    only = ["source.azure-arm.ubuntu"]
     inline = [
       "echo 'Hello, Packer!'"
     ]
   }
-  provisioner "file" {
-    except      = ["source.source.azure-arm.windows"]
-    destination = "/tmp"
-    source      = "../files/"
+  provisioner "ansible" {
+    use_proxy               = false
+    ansible_env_vars        = ["PACKER_BUILD_NAME={{ build_name }}"]
+    playbook_file = "../playbooks/playbook.yml"
   }
 }
+
+
+
+
 
 
 
