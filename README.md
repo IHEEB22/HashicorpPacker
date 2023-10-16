@@ -25,7 +25,7 @@ Follow the steps below to use this project:
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/yourusername/your-repo.git
+   git clone https://github.com/IHEEB22/HashicorpPacker.git
 2. Navigate to the packer templates directory:
 
    ```bash
